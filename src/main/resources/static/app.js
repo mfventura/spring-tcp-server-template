@@ -9,7 +9,7 @@ stompClient.onConnect = (frame) => {
     console.log('Connected: ' + frame);
     stompClient.subscribe('/topic/messages', (message) => {
         showMessage(JSON.parse(message.body).name, JSON.parse(message.body).content);
-    });
+    }, {'user': $("#name").val()});
 };
 
 stompClient.onWebSocketError = (error) => {
@@ -53,7 +53,6 @@ function disconnect() {
 }
 
 function sendName() {
-    console.log(JSON.stringify({'name': $("#name").val(), 'content': $("#content").val()}));
     stompClient.publish({
         destination: "/api/message",
         body: JSON.stringify({'name': $("#name").val(), 'content': $("#content").val()})
