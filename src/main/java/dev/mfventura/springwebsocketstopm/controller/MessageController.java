@@ -22,11 +22,13 @@ public class MessageController {
     @MessageMapping("/message")
     @SendTo("/topic/messages")
     public Message handleMessage(Message message) {
+        System.out.println(message.getName()+" hizo SEND");
         return message;
     }
 
     @SubscribeMapping("/messages")
     public Message subscribe(@Header("user") String user) {
+        System.out.println(user+" se suscribio");
         return Message.builder()
                 .name("Server")
                 .content(user + " connected")
