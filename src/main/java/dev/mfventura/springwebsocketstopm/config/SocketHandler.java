@@ -1,7 +1,9 @@
 package dev.mfventura.springwebsocketstopm.config;
 
+import com.fasterxml.jackson.core.util.ByteArrayBuilder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -28,7 +30,7 @@ public class SocketHandler extends TextWebSocketHandler {
                 sessions.remove(webSocketSession);
                 continue;
             }
-            webSocketSession.sendMessage(new TextMessage("Hello from server!"));
+            webSocketSession.sendMessage(new TextMessage("HELLO TEXT"));
         }
     }
 
